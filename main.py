@@ -19,4 +19,8 @@ pars.add_argument("--reset", action="store_true", help="Start fresh scan file")
 pars.add_argument("--json", action="store_true", help="Output JSON")
 
 args = pars.parse_args()
-print(args)
+host = args.host
+timeout_secs = args.timeout
+state_file_path = args.state_file
+reset_base = args.reset
+json_output = args.json
