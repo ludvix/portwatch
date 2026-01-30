@@ -1,5 +1,7 @@
 #main py
 import argparse
+import socket
+import json 
 
 host = "localhost"
 port_start = 1 
@@ -25,4 +27,23 @@ timeout_secs = args.timeout
 state_file_path = args.state_file
 reset_base = args.reset
 json_output = args.json
+
+split_port_result = ports.split("-")
+port_start = int(split_port_result[0])
+port_end = int(split_port_result[1])
+
+def scan_port(host, port):
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(timeout_secs)
+        s.connect((host, port))
+        s.close()
+        return True
+    except:
+        return False
+
+for port in range(port_start, port_end + 1):
+    print(f"Scanning port {port}...")
+    if scan_port(host, port):
+        print(f"Port {port} is OPEN!")
 
