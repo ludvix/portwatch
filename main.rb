@@ -18,4 +18,4 @@ start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 end
 stop_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 time_total = stop_time - start_time
-puts "Scan complete - #{total_ports_open} ports open | Program finished in: #{time_total.floor} seconds"
+puts "Scan complete - #{total_ports_open} ports open | Program finished in: #{time_total.round(2)} seconds"
