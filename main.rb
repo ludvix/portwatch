@@ -3,6 +3,7 @@ require 'socket'
 target = ARGV[0]
 port_range = ARGV[1].split('-')
 total_ports_open = 0
+start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
 (port_range[0].to_i..port_range[1].to_i).each do |port|
   begin 
@@ -15,4 +16,6 @@ total_ports_open = 0
     puts "Port #{port}: Closed"
   end
 end
-puts "Scan complete - #{total_ports_open} port open"
+stop_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+time_total = stop_time - start_time
+puts "Scan complete - #{total_ports_open} ports open | Program finished in: #{time_total.floor} seconds"
